@@ -1,5 +1,5 @@
 <div id="login form-popup">
-  <form action="" method="post" class="form-container login">
+  <form action="index.php" method="post" class="form-container login">
 
     <h5>Connectez vous à la plateforme</h5>
     <?php
@@ -25,7 +25,7 @@
       </tbody>
     </table>
 
-    <input type='submit' name="submit" value='Connexion'>
+    <input type='submit' name="submit-login" value='Connexion'>
 
   </form>
 </div>

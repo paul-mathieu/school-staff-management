@@ -1,5 +1,5 @@
 <div id="create-account form-popup">
-  <form action="" method="post" class="form-container create-account">
+  <form action="index.php" method="post" class="form-container create-account">
     <h5>Vous n'avez pas encore de compte ? <br>Créez-en un maintenant !</h5>
     <?php
     	if ($empty_create){
@@ -54,6 +54,6 @@
       </tbody>
     </table>
 
-    <input type="submit" name="submit" value="Créer un compte">
+    <input type="submit" name="submit-create" value="Créer un compte">
   </form>
 </div>

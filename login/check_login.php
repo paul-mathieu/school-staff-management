@@ -13,13 +13,23 @@
 		$empty_login = true;
 
 	// Si le username ou le mot de passe est incorrect
-	} elseif ($password_match["password"] != $password){
+	} elseif ($password_match["pwd"] != $password){
 		$wrong_password = true;
 
 	// Sinon on peut démarrer une nouvelle session et revenir sur la page d'accueil
 	} else {
-		session_start ();
+		// statut
+		$sql = "SELECT statut FROM statut
+			INNER JOIN utilisateur ON statut.id_statut = utilisateur.statut_id_statut
+			WHERE utilisateur.login LIKE '".$username."';";
+		$result = mysql_query($sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+		$statut = mysql_fetch_assoc($result);
+
+		// console_log($username);
+		// session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
+		$_SESSION['statut'] = $statut['statut'];
+
 	}
 ?>
