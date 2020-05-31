@@ -1,6 +1,11 @@
 <?php
+  // debug function
+  function console_log($data) {echo "<script type=\"text/javascript\">console.log(\"".$data."\");</script>";}
+
   // connect to db
   include 'connect_db.php';
+
+  session_start();
 
   // init errors login
   $empty_login = false;
@@ -20,10 +25,10 @@
     // remove old cookies
     $_SESSION['connect'] = true;
     // delete cookies
-    if (isset($_COOKIE['PHPSESSID'])) {
-        unset($_COOKIE['PHPSESSID']);
-        setcookie('PHPSESSID', null, -1, '/');
-    }
+    // if (isset($_COOKIE['PHPSESSID'])) {
+    //     unset($_COOKIE['PHPSESSID']);
+    //     setcookie('PHPSESSID', null, -1, '/');
+    // }
 
     // start session
     include "login/check_login.php";
@@ -34,6 +39,4 @@
     include "login/check_create.php";
   }
 
-  // debug function
-  function console_log($data) {echo "<script type=\"text/javascript\">console.log(\"".$data."\");</script>";}
 ?>
