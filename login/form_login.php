@@ -1,15 +1,15 @@
 <div id="login form-popup">
-  <form action="verifLogin.php" method="post" class="form-container login">
+  <form action="" method="post" class="form-container login">
 
     <h5>Connectez vous à la plateforme</h5>
     <?php
-    if (isset($_GET["error_login"])){
-    	if ($_GET["error_login"] == "empty"){
-    		echo "<h5>Veuillez remplir tous les champs pour vous connecter.</h5>";
+    	if ($empty_login){
+    		echo "<h5 class=\"error\">Veuillez remplir tous les champs pour vous connecter.</h5>";
+    	} elseif ($wrong_password) {
+    		echo "<h5 class=\"error\">Mot de passe incorrect. Veuillez réessayer.</h5>";
     	} else {
-    		echo "<h5>Login ou mot de passe incorrect. Veuillez réessayer.</h5>";
-    	}
-    }
+        echo "<h5></h5>";
+      }
     ?>
 
     <table>
@@ -24,8 +24,8 @@
         </tr>
       </tbody>
     </table>
-    
-    <input type='submit' value='Connexion'>
+
+    <input type='submit' name="submit" value='Connexion'>
 
   </form>
 </div>
