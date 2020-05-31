@@ -1,10 +1,5 @@
-<?php 
+<?php
 #requete sql
-
-$mysql_user = "molierej";
-$mysql_passwd = "356hkuwy";
-$mysql_host = "localhost:/var/run/mysql/mysql_tp.sock";
-$mysql_link = mysql_connect($mysql_host, $mysql_user, $mysql_passwd);
 
 $prepare = ("SELECT capteur.description FROM molierej.capteur WHERE capteur.nom LIKE '$nom')");
 $requete = mysql_query($prepare);
@@ -34,15 +29,15 @@ if(isset($_POST["submit"])) {
     if (file_exists($target_file)) {
         echo "Désolé, le fichier est introuvable.";
         $uploadOk = 0;
-        }
+    }
     if ($_FILES["fileToUpload"]["size"] > 800000000) {
         echo "Désolé, votre image est trop gros,la limite maximal des 10 Mo";
         $uploadOk = 0;
-        }
+    }
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
         echo "Désolé, seul les formats jpeg, jpg et png sont autorisés";
         $uploadOk = 0;
-        }
+      
     //verifie si c'est bien une image
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
@@ -51,10 +46,10 @@ if(isset($_POST["submit"])) {
     } else {
         echo "Ce n'est pas une image.";
         $uploadOk = 0;
-    }   
+    }
     if ($uploadOk == 0) {
     echo "Votre fichier n'a pas était telecharger.";
-    // essaie du telechargement si tout est bon 
+    // essaie du telechargement si tout est bon
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "Le fichier ". basename( $_FILES["fileToUpload"]["name"]). "  a bien été envoyer.";
