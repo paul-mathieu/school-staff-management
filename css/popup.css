@@ -1,0 +1,82 @@
+#overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  align-content:center;
+}
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  /* bottom: 0; */
+  /* right: 15px; */
+  /* border: 5px solid #f1f1f1; */
+  /* z-index: 9; */
+}
+
+/* Add styles to the form container */
+.form-container {
+  position: fixed; /* or absolute */
+  top: 50%;
+  padding: 10px;
+  border:2px solid;
+  border-color: #40AAD4;
+  background-color: #D0D0D0;
+}
+
+form.login {
+  left: 20%;
+  max-width: 800px;
+  transform: translate(-40%, -50%);
+}
+
+form.create-account {
+  left: 60%;
+  max-width: 800px;
+  transform: translate(-40%, -50%);
+}
+
+/* Full-width input fields */
+.form-container input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 11px 0;
+  border: none;
+  background: #F5F5F5;
+}
+
+/* When the inputs get focus, do something */
+.form-container input:focus {
+  background-color: #ddd;
+  outline: none;
+  border: 1px solid #40AAD4;
+  margin: 4px -1px 10px -1px;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #D0D0D0;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.form-container th {font-weight:normal;}
