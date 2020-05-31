@@ -11,29 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <?php
-
-      // if need to load connexion popup
-      if(!isset($_SESSION['connect'])) {
-        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/popup.css\">\n";
-      }
-
-
-      // connect to db
-      include 'connect_db.php';
-
-      // get the page number
-      $encours = array(" "," "," "," "," ");
-      !isset($_GET["page"]) ?  $page=0 :  $page=$_GET["page"];
-      $encours[$page] = "encours";
-
-    ?>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
   </head>
   <body>
 
     <?php
     // include popup (login or create account)
-    include 'login/popup.inc.php';
+    if (!isset($_SESSION)){
+      include 'login/popup.inc.php';
+    }
+    console_log($empty_login);
+    console_log($wrong_password);
+    console_log($empty_create);
+    console_log($empty_create);
+    console_log($incompatible_password);
+    console_log($error_password_length);
+    console_log($unique_constraint);
     ?>
     <!-- -- title -- -->
     <div id="titre" class="container">
