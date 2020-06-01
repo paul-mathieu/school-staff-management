@@ -7,7 +7,8 @@ $infos_expert = mysql_fetch_array($result, MYSQL_NUM);
 
 $sql = "SELECT specialite FROM specialite
           INNER JOIN est_specialise
-          WHERE utilisateur_login = '".$login_expert."';";
+          WHERE utilisateur_login = '".$login_expert."'
+          AND specialite.id_specialite = est_specialise.id_specialite;";
 $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_error()."\n".$sql);
 
 ?>
@@ -29,9 +30,10 @@ $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_err
       <th>Liste des spécialités</th>
       <th>
         <?php
-          if (mysql_num_rows($result_login) > 0){
-            while ($row = mysql_fetch_array($result_login, MYSQL_NUM)) {
+          if (mysql_num_rows($specialities_expert) > 0){
+            while ($row = mysql_fetch_array($specialities_expert, MYSQL_NUM)) {
               echo $row[0] . ' ';
+
             }
           }
         ?>
