@@ -31,11 +31,11 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
     if ($_FILES["fileToUpload"]["size"] > 800000000) {
-        echo "Désolé, votre image est trop gros,la limite maximal des 10 Mo";
+        echo "Désolé, votre image est trop volumineuse, la limite maximale est de 10 Mo";
         $uploadOk = 0;
     }
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-        echo "Désolé, seul les formats jpeg, jpg et png sont autorisés";
+        echo "Désolé, seuls les formats jpeg, jpg et png sont autorisés";
         $uploadOk = 0;
       
     //verifie si c'est bien une image
