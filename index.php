@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <?php if($page == "2"){echo '<link rel="stylesheet" type="text/css" href="css/messagerie.css">';} ?>
     <?php if (isset($_SESSION['statut'])){console_log("statut : " . $_SESSION['statut']);} ?>
   </head>
 
@@ -66,7 +67,7 @@ echo "         <li><a href=\"?page=4\" class=\"btn_menu $encours[4]\">Emploi du 
     </div>
 
     <!-- -- footer -- -->
-    <div id="footer" class="container">
+    <div id="footer" class="container footer">
         <span>Polytech Annecy-Chambéry - Module INFO642 - Guilbert, Guilly, Mathieu, Molières</span>
     </div>
 
