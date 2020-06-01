@@ -49,8 +49,8 @@ $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_err
       <th>Rechercher l'expert sur DuckDuckGo</th>
       <th>
         <?php
-          $url_search = "www.google.com/search?q=" . $infos_expert[2] . '+' . $infos_expert[1];
-          echo "<a href=\"" . $url_search . "\">Recherche Google</a>";
+          $url_search = "https://www.google.com/search?q=" . $infos_expert[2] . '+' . $infos_expert[1];
+          echo "<a href=\"" . $url_search . "\" target=\"_blank\">Recherche Google</a>";
         ?>
       </th>
     </tr>
@@ -58,8 +58,8 @@ $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_err
       <th>Rechercher l'expert sur Google </th>
       <th>
         <?php
-          $url_search = "duckduckgo.com/?q=" . $infos_expert[2] . '+' . $infos_expert[1];
-          echo "<a href=\"" . $url_search . "\">Recherche DuckDuckGo</a>";
+          $url_search = "https://duckduckgo.com/?q=" . $infos_expert[2] . '+' . $infos_expert[1];
+          echo "<a href=\"" . $url_search . "\" target=\"_blank\">Recherche DuckDuckGo</a>";
         ?>
       </th>
     </tr>
