@@ -34,9 +34,18 @@
     include "login/check_login.php";
 
   } elseif (isset($_POST['submit-create'])) { // if create account
-
     // start session
-    include "login/check_create.php";
+    include "login/check_create_account.php";
+  }
+
+  if (isset($_GET['disconnect'])){
+    if ($_GET['disconnect']){
+      unset($_SESSION['username']);
+      unset($_SESSION['password']);
+      unset($_SESSION['statut']);
+      session_destroy();
+      header('Location: index.php');
+    }
   }
 
 ?>

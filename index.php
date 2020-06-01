@@ -12,8 +12,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/popup.css">
-    <?php if($page == "2"){echo '<link rel="stylesheet" type="text/css" href="css/messagerie.css">';} ?>
-    <?php if (isset($_SESSION['statut'])){console_log("statut : " . $_SESSION['statut']);} ?>
+    <?php
+        if ($page == "2") {
+            echo '    <link rel="stylesheet" type="text/css" href="css/messagerie.css">';
+        } elseif ($page == "3") {
+            echo '    <link rel="stylesheet" type="text/css" href="css/info_experts.css">';
+        }
+//        if (isset($_SESSION['statut'])){
+//            console_log("statut : " . $_SESSION['statut']);
+//        }
+    ?>
   </head>
 
   <body>
@@ -35,7 +43,12 @@
     ?>
     <!-- -- title -- -->
     <div id="titre" class="container">
-      <h1> Gestion d'intervenants experts dans la formation </h1>
+        <h1>Gestion d'intervenants experts dans la formation</h1>
+        <?php
+            if (isset($_SESSION['username'])) {
+                echo "<div><a href=\"./index.php?page=0&disconnect=true\"><input type=\"button\" value=\"Se déconnecter\" class=\"disconnect\"></a></div>";
+            }
+        ?>
     </div>
 
     <!-- -- content -- -->
