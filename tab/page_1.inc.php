@@ -6,25 +6,32 @@ $data=mysql_fetch_assoc($result_data);
 
 <div id="title"> Mon compte </div> </br>
 <div id="picture_div">
-    <form action="page_3.php" method="post" enctype="multipart/form-data">
-			<table>
-				<tbody>
-					<tr>
-						<th><label>Choisir une image de profil : </label></th>
-						<th>
-							<input type="file" name="fileToUpload" id="fileToUpload">
-							<input type="submit" value="Envoyer l'image" name="submit">
-						</th>
-					</tr>
-				</tbody>
-			</table>
-    </form>
+<!--    <form action="page_3.php" method="post" enctype="multipart/form-data">-->
+<!--			<table>-->
+<!--				<tbody>-->
+<!--					<tr>-->
+<!--						<th><label>Choisir une image de profil : </label></th>-->
+<!--						<th>-->
+<!--							<input type="file" name="fileToUpload" id="fileToUpload">-->
+<!--							<input type="submit" value="Envoyer l'image" name="submit">-->
+<!--						</th>-->
+<!--					</tr>-->
+<!--				</tbody>-->
+<!--			</table>-->
+<!--    </form>-->
 </div>
 <div id="information">
   <form action="index.html" method="post">
 		<table>
 			<tbody>
-				<tr>
+                <tr>
+                    <th><label>Image de profil : </label></th>
+                    <th>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                    </th>
+                </tr>
+
+                <tr>
 					<th><label> Login  : </label></th>
 					<th><?php echo "<input value=".$data['login']." maxlength='50'> </input>"; ?></th>
 				</tr>
