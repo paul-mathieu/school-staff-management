@@ -22,15 +22,13 @@ $login = $_SESSION['username'];
 		$sql_id= "SELECT requete_utilisateur.requete_id_requete
 				FROM molierej.requete_utilisateur
 				WHERE requete_utilisateur.utilisateur_login LIKE '".$_SESSION['username']."'";
-		$result_id = mysql_query($sql_id) or die('Erreur SQL !'.$sql_id.'<br>'.mysql_error());
-		$id_requete=mysql_fetch_assoc($result_id);
 
 		$sql = "SELECT * FROM molierej.requete
-			WHERE requete.id_requete='".$id_requete['requete_id_requete']."'";
+			WHERE requete.id_requete IN (".$sql_id.")";
+			
 		$result = mysql_query($sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
 
 		while ($getRequete = mysql_fetch_assoc($result)){
-
 			$id=$getRequete["id_requete"];
 			$statut=$getRequete["nom"];
 			echo "<div class='requete'><div class='requete-in' onclick=accessRequest(".$id.")>".$statut." </div></div>";

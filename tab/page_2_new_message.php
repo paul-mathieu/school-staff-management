@@ -4,13 +4,20 @@ $sql = "SELECT nom, prenom, login FROM molierej.utilisateur
         AND molierej.statut.id_statut = molierej.utilisateur.statut_id_statut
 	ORDER BY nom";
 $result_name = mysql_query($sql) or die('Erreur SQL ! '.$sql.'<br>'.mysql_error());
- ?>
+
+if (isset($_GET["id_request"])) {
+	$id_requete = $_GET["id_request"];
+} else {
+	$id_requete = 0;
+}
+
+?>
 
 <div id=bot-right class='container-message'>
 
     <div class='title'>Nouveau message</div>
 
-    <form action='newRequest.php' method='post' class='form-container-messagerie'>
+    <form action=<?php echo "'?page=2&id_request=".$id_requete."&new_message=true'"?> method='post' class='form-container-messagerie'>
 
         <div>Nom de l'enseignant destinataire :
             <select name="login">
@@ -34,4 +41,15 @@ $result_name = mysql_query($sql) or die('Erreur SQL ! '.$sql.'<br>'.mysql_error(
     </form>
 </div>
 
-<?php ?>
+<?php 
+if (isset($_GET["new_message"])) {
+	if (empty($_POST['fileToUpload'])){
+		$piece_jointe = 'NULL';
+	} else {
+		$piece_jointe = $_POST['fileToUpload'];
+	}
+	$sql = "insert into message (utilisateur_login, id_requete, message, piece_jointe) values ('".
+	$login."',".$id_requete.",'".$_POST['content']."',".$piece_jointe.")";
+	mysql_query($sql);
+}
+?>
