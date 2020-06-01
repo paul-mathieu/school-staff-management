@@ -49,7 +49,7 @@
         </tr>
         <tr>
           <th><label for="password-confirm">Confirmation</label></th>
-          <th><input type="password-confirm" name="password-confirm" id="password-confirm" required></th>
+          <th><input type="password" name="password-confirm" id="password-confirm" required></th>
         </tr>
       </tbody>
     </table>

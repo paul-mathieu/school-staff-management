@@ -18,7 +18,7 @@ $getIdStatut = mysql_fetch_assoc($result);
 
 
 // Si l'un des champs n'est pas rempli
-if ($name == "" or $firstname == "" or $statut == "Statut" or $mail == "" or $login == "" or $pwd1 == "" or $pwd2 == "") {
+if ($name == "" or $lastname == "" or $statut == "Statut" or $mail == "" or $login == "" or $pwd1 == "" or $pwd2 == "") {
 	$empty_create = true;
 // Si la confirmation du mot de passe n'est pas correcte
 } elseif ($pwd1 != $pwd2){
@@ -38,7 +38,7 @@ if ($name == "" or $firstname == "" or $statut == "Statut" or $mail == "" or $lo
 	'".$login."',
 	'".$pwd1."',
 	'".$name."',
-	'".$firstname."',
+	'".$lastname."',
 	'".$mail."',
 	".$getIdStatut["id_statut"].")";
 	if (!mysql_query($sql)) {
