@@ -4,13 +4,13 @@ $requete_specialite = mysql_query($sql_specialite) or die('Erreur SQL !'.$sql_sp
 
 ?>
 
-<div style='overflow-y:hidden;height:200px;'>
+<div style='overflow-y:hidden;display: block;height:150px;'>
     <form action='index.php?page=1' method='post'>
         <table>
             <tbody>
                 <tr>
-                    <td style="overflow-y: scroll">
-                        <table>
+                    <td style="overflow-y: scroll;display: block;height:150px;">
+                        <table style="">
                             <?php
                             While($liste=mysql_fetch_assoc($requete_specialite)){
                                 echo "<tr>";
@@ -21,9 +21,9 @@ $requete_specialite = mysql_query($sql_specialite) or die('Erreur SQL !'.$sql_sp
                                 $is_spe = mysql_num_rows($specialities_user) > 0;
 
                                 if ($is_spe){
-                                    echo "<td><input type='checkbox' value='".$liste["id_specialite"]."' name ='case' checked></td>";
+                                    echo "<td><input type='checkbox' value='".$liste["id_specialite"]."' name ='case[]' checked></td>";
                                 } else {
-                                    echo "<td><input type='checkbox' value='".$liste["id_specialite"]."' name ='case'></td>";
+                                    echo "<td><input type='checkbox' value='".$liste["id_specialite"]."' name ='case[]'></td>";
                                 }
 
 
@@ -38,7 +38,7 @@ $requete_specialite = mysql_query($sql_specialite) or die('Erreur SQL !'.$sql_sp
                     </td>
                     <td>
                         <div id="button_case" >
-                                <input type="submit-specialities" name="box" value="Envoyer les specialités" >
+                                <input type="submit" name="submit-specialities" value="Envoyer les specialités" >
                         </div>
                     </td>
                 </tr>
@@ -54,14 +54,51 @@ $requete_specialite_ajout = mysql_query($sql_specialite_ajout) or die('Erreur SQ
 
 if(isset($_POST["submit-specialities"])) {
     // ajout d'une nouvelle spécialite
-
-    // modification des spécialités de l'expert
-    While($liste2=mysql_fetch_assoc($requete_specialite_ajout)){
-        echo $_POST["case"][1];
-        if (isset($_POST["'".$liste2["id_specialite"]."'"])){
-            echo $liste2["id_specialite"];
+    if (isset($_POST["autre"])){
+        if ($_POST["autre"]!=""){
+            $specialite_id_max ="SELECT max(specialite.id_specialite)+1 as max_id FROM molierej.specialite";
+            $requete_specialite_id_max = mysql_query($specialite_id_max) or die('Erreur SQL !'.$specialite_id_max.'<br>'.mysql_error());
+            $id_max=mysql_fetch_assoc($requete_specialite_id_max);
+            echo $id_max["max_id"];
+            $specialite_ajout="INSERT INTO molierej.specialite(id_specialite,specialite) VALUES ('".$id_max["max_id"]."','".$_POST["autre"]."')";
+            if( mysql_query($specialite_ajout) ){
+                $specialite_ajout="INSERT INTO molierej.est_specialise(utilisateur_login,id_specialite) VALUES ('".$_SESSION['username']."','".$id_max["max_id"]."') ";
+                $requete = mysql_query($specialite_ajout) or die('Erreur SQL !'.$specialite_ajout.'<br>'.mysql_error());
+            }
         }
     }
-}
-?>
 
+    //suppression des anciens choix
+    $spe_sql="DELETE FROM molierej.est_specialise WHERE est_specialise.utilisateur_login='".$_SESSION['username']."'";
+
+    //
+    if(!empty($_POST['case'])) {
+//        echo 'Les valeurs des cases cochées sont :<br />';
+        $checkboxes = is_array($_POST['case']) ? $_POST['case'] : array();
+        foreach($checkboxes as $checkbox) {
+            console_log($checkbox);
+            $new_spe="INSERT INTO molierej.est_specialise VALUES ('" . $_SESSION['username'] . "', " . $checkbox . ")";
+            $requete = mysql_query($new_spe);
+        }
+//        foreach ($_POST['case'] as $val) {
+//            $new_spe="INSERT INTO molierej.est_specialise VALUES ('" . $_SESSION['username'] . "', " . $val;
+//            $requete = mysql_query($new_spe);
+//        }
+        redirect("1");
+
+    }
+    // add the new spe
+
+
+//    if( mysql_query($spe_sql) ){
+//        // modification des spécialités de l'expert
+//        While($liste2=mysql_fetch_assoc($requete_specialite_ajout)){
+//            if(isset($_POST[$liste2["id_specialite"]])){
+//                $new_spe="INSERT INTO molierej.est_specialise VALUES ('" . $_SESSION['username'] . "'," . $_POST[$liste2["id_specialite"]];
+//                $requete = mysql_query($new_spe) or die('Erreur SQL !'.$new_spe.'<br>'.mysql_error());
+//            }
+//        }
+//    }
+}
+
+?>

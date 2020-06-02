@@ -42,7 +42,7 @@ $result_specialities = mysql_query($sql) or die('Erreur SQL ! '.$sql.'<br>'.mysq
 
 	<form id="expert-login" action="index.php?page=3" method="post">
 
-        <label for="login">Recherche par spécialités : </label>
+        <label for="login">Recherche par logins : </label>
         <select name="login">
         <?php
         if (mysql_num_rows($result_login) > 0){
@@ -62,7 +62,7 @@ $result_specialities = mysql_query($sql) or die('Erreur SQL ! '.$sql.'<br>'.mysq
 
     <form id="expert-speciality" action="index.php?page=3" method="post">
 
-        <label for="id-spe">Recherche par spécialité : </label>
+        <label for="id-spe">Recherche par spécialités : </label>
         <select name="id-spe">
             <?php
             if (mysql_num_rows($result_specialities) > 0){
