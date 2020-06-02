@@ -43,7 +43,7 @@ $login = $_SESSION['username'];
 	if(isset($_GET['id_request'])){
 
 		$id_requete=$_GET['id_request'];
-        $sql_message="SELECT * FROM molierej.message WHERE message.id_requete=".$id_requete;
+		$sql_message="SELECT * FROM molierej.message WHERE message.id_requete=".$id_requete;
 		$requete_message = mysql_query($sql_message) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
 		while ($getMessage = mysql_fetch_assoc($requete_message)){
 			echo "<div class='message'>".$getMessage['date']." de ".$getMessage['utilisateur_login']."</br>".$getMessage['message']."</div>";
@@ -71,4 +71,5 @@ $login = $_SESSION['username'];
 	include 'tab/page_2_new_message.php';
 	// }
 	?>
+	
 </div>

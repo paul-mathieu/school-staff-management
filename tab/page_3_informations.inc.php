@@ -20,7 +20,19 @@ $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_err
   <tbody>
     <tr>
       <th>Photo de profil</th>
-      <th></th>
+      <th>
+        <?php
+
+    $sql_photo="SELECT utilisateur.photo,utilisateur.photo_name,utilisateur.photo_type FROM molierej.utilisateur  WHERE utilisateur.login='".$infos_expert[0]."'";
+    $requete_photo = mysql_query($sql_photo) or die('Erreur SQL !'.$sql_CV.'<br>'.mysql_error());
+    $photo_resultat=mysql_fetch_assoc($requete_photo);
+    if($photo_resultat["photo"]!=null){
+        echo "<a id='link_picture' target='_blank' href=\"file/photo.php?login=".$infos_expert[0]."\">Photo de profil</a>";
+    }else{
+      echo "<label> photo indisponible</label>";
+    }
+    ?>
+      </th>
     </tr>
     <tr>
       <th>Login</th>
@@ -45,7 +57,20 @@ $specialities_expert = mysql_query($sql) or die("Requête invalide: ". mysql_err
     </tr>
     <tr>
       <th>Télécharger le CV</th>
-      <th></th>
+      <th>
+    <?php
+    $sql_CV="SELECT utilisateur.CV,utilisateur.CV_name,utilisateur.CV_type FROM molierej.utilisateur  WHERE utilisateur.login='".$infos_expert[0]."'";
+    $requete_CV = mysql_query($sql_CV) or die('Erreur SQL !'.$sql_CV.'<br>'.mysql_error());
+    $CV_resultat=mysql_fetch_assoc($requete_CV);
+    if($CV_resultat["CV"]!=null){
+        echo "<a id='link_picture' target='_blank' href=\"file/CV.php?login=".$infos_expert[0]."\">Ouvrir le CV actuel</a>";
+
+    }else{
+      echo "<label> CV indisponible</label>";
+    }
+        
+    ?>
+      </th>
     </tr>
     <tr>
       <th>Rechercher l'expert sur DuckDuckGo</th>

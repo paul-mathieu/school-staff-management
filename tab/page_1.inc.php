@@ -74,23 +74,8 @@ $data=mysql_fetch_assoc($result_data);
 					<th><label> Mail : </label></th>
 					<th><?php echo "<input name='email' value=".$data['email']." maxlength='50'> </input>";?></th>
 				</tr>
-                <tr>
-                    <th>                    <label for="groupe">votre groupe  : </label>               </th>
-                    <th>
-                        <select name="groupe">
-                            <?php
-                            $sql_groupe = "SELECT groupe.libelle FROM molierej.groupe";
-
-                            $groupe = mysql_query($sql_groupe) or die("Requête invalide: ". mysql_error()."\n".$sql_groupe);
-                            if (mysql_num_rows($groupe) > 0){
-                                while ($row = mysql_fetch_array($groupe)) {
-                                    echo '      <option value="' . $row["libelle"] . '">' . $row["libelle"] . '</option>';
-                                }
-                            }
-                            ?>
-                        </select>
-                    </th>
-                </tr>
+                
+            
 			</tbody>
 		</table>
 
@@ -115,6 +100,10 @@ if(isset($_POST["compte"])) {
         if ($_SESSION['statut'] == 'Expert'){
             echo '<h3 style=\"font-size: 150%;\">Modifiez vos spécialités</h3>';
             include 'tab/page_1_specialites.php';
+        
+        }
+        if ($_SESSION['statut'] == 'Etudiant'){
+            include 'tab/page_1_groupe.php';
         }
     }
 ?>

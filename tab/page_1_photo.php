@@ -1,17 +1,19 @@
 <?php
-$sql_CV="SELECT utilisateur.CV,utilisateur.CV_name,utilisateur.CV_type FROM molierej.utilisateur  WHERE utilisateur.login='".$_SESSION['username']."'";
-$requete_CV = mysql_query($sql_CV) or die('Erreur SQL !'.$sql_CV.'<br>'.mysql_error());
-$CV_resultat=mysql_fetch_assoc($requete_CV);
-if($CV_resultat["CV"]!=null){
+$sql_photo="SELECT utilisateur.photo,utilisateur.photo_name,utilisateur.photo_type FROM molierej.utilisateur  WHERE utilisateur.login='".$_SESSION['username']."'";
+
+$requete_photo = mysql_query($sql_photo) or die('Erreur SQL !'.$sql_CV.'<br>'.mysql_error());
+$photo_resultat=mysql_fetch_assoc($requete_photo);
+if($photo_resultat["photo"]!=null){
     echo "<a id='link_picture' target='_blank' href=\"file/photo.php?login=".$_SESSION['username']."\">Ouvrir la photo de profil actuelle</a>";
 }
+
 if(isset($_POST["submit_photo"])) {
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    if (file_exists($target_file)){
+//    if (file_exists($target_file)){
         $proportion=getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
         if ($_FILES["fileToUpload"]["size"] > 800000000) {
@@ -39,10 +41,12 @@ if(isset($_POST["submit_photo"])) {
             $sql_piece_joint="UPDATE molierej.utilisateur SET  utilisateur.photo_type='".$file_type."',utilisateur.photo_name='".$file_name."' , utilisateur.photo='".$file."' WHERE utilisateur.login='".$_SESSION['username']."'";
 
             $requete_joint = mysql_query($sql_piece_joint);
+
+            redirect("1");
         }
 
-    } else {
-        alert_error("Vous n'avez pas choisi de fichier");
-    }
+//    } else {
+//        alert_error("Vous n'avez pas choisi de fichier");
+//    }
 }
 ?>
