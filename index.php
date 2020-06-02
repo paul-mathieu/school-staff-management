@@ -81,7 +81,7 @@ echo "         <li><a href=\"?page=4\" class=\"btn_menu $encours[4]\">Emploi du 
 
     <!-- -- footer -- -->
     <div id="footer" class="container footer">
-        <span>Polytech Annecy-Chambéry - Module INFO642 - Guilbert, Guilly, Mathieu, Molières</span>
+        <span>Polytech Annecy-Chambéry - Module INFO642 - Mathieu, Molières, Guilbert, Guilly</span>
     </div>
 
   </body>

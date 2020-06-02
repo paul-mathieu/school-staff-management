@@ -2,6 +2,12 @@
   // debug function
   function console_log($data) {echo "<script type=\"text/javascript\">console.log(\"".$data."\");</script>";}
 
+  // error function
+  function alert_error($data) {echo "<script type=\"text/javascript\">document.onload(window.alert(\"".$data."\"));</script>";}
+
+  // function redirect page
+function redirect($page) {echo "<script type=\"text/javascript\">window.location.replace(\"index.php?page=" . $page . "\");</script>";}
+
   // connect to db
   include 'connect_db.php';
 
